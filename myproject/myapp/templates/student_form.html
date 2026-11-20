@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student form</title>
+
+    <style>
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: blue;
+            border: 1px solid #c3e6cb;
+        }
+    </style>
+</head>
+
+<body>
+
+    {% if student %}
+        <h1>Update student</h1>
+    {% else %}
+        <h1>Add student</h1>
+    {% endif %}
+
+    <form method="POST"
+          action="{% if student %}{% url 'update' student.id %}{% else %}{% url 'create' %}{% endif %}">
+
+        {% csrf_token %}
+
+        <label>Name:</label>
+        <input type="text"
+               name="name"
+               value="{{ student.name|default:'' }}"
+               required>
+
+        <br><br>
+
+        <label>Age:</label>
+        <input type="number"
+               name="age"
+               value="{{ student.age|default:'' }}"
+               required>
+
+        <br><br>
+
+        <label>Course:</label>
+        <input type="text"
+               name="course"
+               value="{{ student.course|default:'' }}"
+               required>
+
+        <br><br>
+
+        <button type="submit">
+            {% if student %}
+                Update student
+            {% else %}
+                Add student
+            {% endif %}
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="{% url 'students' %}">
+        Back to student list
+    </a>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert success">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+</body>
+</html>
+

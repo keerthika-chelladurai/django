@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <style>
+        body{
+            font-family:Arial,sans-serif;
+            background:linear-gradient(135deg,#667eea,#764ba2);
+            margin:0;
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+        .form-container{
+            width:400px;
+            background-color:white;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+        h1{
+            text-align:center;
+            color:#333;
+            margin-bottom:25px;
+        }
+        label{
+            display:block;
+            margin-top:15px;
+            margin-bottom:5px;
+            font-weight:bold;
+            color:#444;
+        }
+        input{
+            width:100%;
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:15px;
+            box-sizing:border-box;
+        }
+        input:focus{
+            border-color:#667eea;
+            outline:none;
+        }
+        button{
+            width:100%;
+            margin-top:25px;
+            padding:12px;
+            border:none;
+            border-radius:8px;
+            background-color:#667eea;
+            color:white;
+            font-size:16px;
+            cursor:pointer;
+        }
+        button:hover{
+            background-color:#5568d9;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Student Registration</h1>
+       <form method="GET" action="/studentformget/">
+        <label>Name</label>
+        <input 
+        type="text"
+        name="name"
+        placeholder="Enter your name"
+        required
+        >
+        <label>Age</label>
+        <input
+         type="number"
+        name="age"
+        placeholder="Enter your age"
+        required>
+        <label>Course</label>
+        <input
+         type="text"
+         name="course"
+         placeholder="Enter your course"
+         required>
+         <label>City</label>
+         <input 
+         type="text"
+         name="city"
+         placeholder="Enter your city"
+         required>
+         <button type="submit">
+            Register Student
+         </button>
+       </form>
+    </div>
+    
+</body>
+</html>
+
+{% comment  %} 
+Cross-site Request Forgery
+
+When using a Django POST form, normally include{% crsf_token %} inside the <form>
+
+{% endcomment %}

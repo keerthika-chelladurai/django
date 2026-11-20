@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+    <style>
+        .alert{
+            padding:15px;
+            margin-bottom:20px;
+            border-radius:5px;
+            font-weight:bold;
+        }
+        .success{
+            background-color:#d4edda;
+            color:blue;
+            border:1px solid #c3e6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>Student List</h1>
+    <a href="{% url 'create' %}">Add Student</a>
+    <hr>
+    {% for student in students %}
+    <h3>{{student.name}}</h3>
+    <p>Age:{{student.age}}</p>
+    <p>Course:{{student.course}}</p>
+    <a href="{% url 'update' student.id %}">update</a>
+    |
+    <a href="{% url 'delete' student.id %}">Delete</a>
+    <hr>
+    {% empty %}
+
+    <p>No students found.</p>
+
+   {% endfor %}
+   {% if messages %}
+   {% for message in messages %}
+    <div class="alert success">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
+    
+</body>
+</html>
